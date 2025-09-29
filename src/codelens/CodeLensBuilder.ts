@@ -1,15 +1,6 @@
-import * as vscode from "vscode"
-import { TemplateRenderer } from "../TemplateRenderer";
-import { VersionAndTimestampCodeLensCache } from "./provider/cache/VersionAndTimestampCodeLensCache";
-import { CodeLensProvider } from "./provider/CodeLensProvider";
-import { ConfigurationLoader } from "../configuration/ConfigurationLoader";
+import * as vscode from "vscode";
+import { ReferencesCodeLens } from "./provider/CodeLensProvider";
 
-export class CodeLensBuilder {
-    public static getCodeLens() {
-
-        const configuration = (new ConfigurationLoader()).getConfiguration();
-        return new CodeLensProvider(
-            new VersionAndTimestampCodeLensCache(),
-            new TemplateRenderer(configuration.referencesTemplate));
-    }
+export interface CodeLensBuilder {
+    build(codeLens: ReferencesCodeLens, token: vscode.CancellationToken): Promise<ReferencesCodeLens | null>
 }

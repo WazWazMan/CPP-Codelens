@@ -1,12 +1,10 @@
 import * as vscode from 'vscode';
-import { CodeLensProvider } from './codelens/provider/CodeLensProvider';
-import { CodeLensBuilder } from './codelens/CodeLensBuilder';
+import { CodeLensProviderBuilder } from './codelens/CodeLensProviderBuilder';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    const codelensProvider = CodeLensBuilder.getCodeLens();
+    const codelensProvider =    CodeLensProviderBuilder.getCodeLens();
     vscode.languages.registerCodeLensProvider("*", codelensProvider);
-
 }
 
 export function deactivate() { }
