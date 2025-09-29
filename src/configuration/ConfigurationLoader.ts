@@ -75,9 +75,9 @@ export class ConfigurationLoader {
                 emptyTemplate: config.get(`${path}.emptyTemplate`, ""),
                 singularTemplate: config.get(`${path}.singularTemplate`, defaultString),
                 pluralTemplate: config.get(`${path}.pluralTemplate`, defaultString),
-                isEmptyTemplateDefault: config.get(`${path}.emptyTemplate`, "") == "",
-                isSingularTemplate: config.get(`${path}.singularTemplate`, defaultString) == defaultString,
-                isPluralTemplate: config.get(`${path}.pluralTemplate`, defaultString) == defaultString,
+                isEmptyTemplateDefault: config.get(`${path}.emptyTemplate`, "") === "",
+                isSingularTemplate: config.get(`${path}.singularTemplate`, defaultString) === defaultString,
+                isPluralTemplate: config.get(`${path}.pluralTemplate`, defaultString) === defaultString,
             };
         }
     }
