@@ -15,12 +15,12 @@
   "main": "./out/extension.js",
   "configuration": {
     "properties": {
-      "cpp-codelens.enableCodeLens": {
+      "cpp-codelens.codelens.enableCodeLens": {
         "type": "boolean",
         "default": true,
         "description": "Enable/disable this extension"
       },
-      "cpp-codelens.enableCodeLens.references.template": {
+      "cpp-codelens.codelens.references.template": {
         "type": "string",
         "default": "{{ count }} references",
         "description": "Template text displayed above a symbol"

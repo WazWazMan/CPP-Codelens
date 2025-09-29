@@ -23,10 +23,10 @@ export class CodeLensProvider implements vscode.CodeLensProvider<ReferencesCodeL
     private codeLensCache: CodeLensResultCache;
     private renderer: Renderable;
 
-    constructor() {
+    constructor(codeLensCache: CodeLensResultCache, renderer: Renderable) {
         this.queue = new AsyncCommandQueue();
-        this.codeLensCache = new VersionAndTimestampCodeLensCache();
-        this.renderer = new TemplateRenderer(vscode.workspace.getConfiguration("cpp-codelens").get<string>("enableCodeLens.references.template", "{{ count }} references"));
+        this.codeLensCache = codeLensCache;
+        this.renderer = renderer;
     }
     public async provideCodeLenses(document: vscode.TextDocument, _token: vscode.CancellationToken): Promise<ReferencesCodeLens[]> {
 
