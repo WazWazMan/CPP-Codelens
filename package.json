@@ -138,25 +138,25 @@
           "default": "{{ count }} references",
           "description": "Template text displayed above an class with multiple references."
         },
-        "cpp-codelens.codelens.references.metod.enableCodeLens": {
+        "cpp-codelens.codelens.references.method.enableCodeLens": {
           "type": "boolean",
           "default": true,
-          "description": "Enable/disable this extension for metod symbol"
+          "description": "Enable/disable this extension for method symbol"
         },
-        "cpp-codelens.codelens.references.metod.emptyTemplate": {
+        "cpp-codelens.codelens.references.method.emptyTemplate": {
           "type": "string",
           "default": "",
-          "description": "Text displayed above an metod when no references are found. Leave empty to disable the annotation."
+          "description": "Text displayed above an method when no references are found. Leave empty to disable the annotation."
         },
-        "cpp-codelens.codelens.references.metod.singularTemplate": {
+        "cpp-codelens.codelens.references.method.singularTemplate": {
           "type": "string",
           "default": "{{ count }} references",
-          "description": "Template text displayed above an metod with exactly one reference."
+          "description": "Template text displayed above an method with exactly one reference."
         },
-        "cpp-codelens.codelens.references.metod.pluralTemplate": {
+        "cpp-codelens.codelens.references.method.pluralTemplate": {
           "type": "string",
           "default": "{{ count }} references",
-          "description": "Template text displayed above an metod with multiple references."
+          "description": "Template text displayed above an method with multiple references."
         },
         "cpp-codelens.codelens.references.property.enableCodeLens": {
           "type": "boolean",

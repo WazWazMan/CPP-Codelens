@@ -6,7 +6,7 @@ export const symbolTypes = [
     "namespace",
     "package",
     "class",
-    "metod",
+    "method",
     "property",
     "field",
     "constructor",
