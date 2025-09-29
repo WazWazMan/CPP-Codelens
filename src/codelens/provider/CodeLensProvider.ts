@@ -51,6 +51,7 @@ export class CodeLensProvider implements vscode.CodeLensProvider<ReferencesCodeL
 
         for (const symbol of allSymbols) {
             codeLenses.push(new ReferencesCodeLens(document.uri, symbol.selectionRange));
+            console.log(`${symbol.name} ,: ${symbol.kind}`);
         }
         if (codeLenses.length === 0) {
             return [];
