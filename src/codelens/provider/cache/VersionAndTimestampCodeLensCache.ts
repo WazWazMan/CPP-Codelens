@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
-import { CodeLens, TextDocument } from 'vscode';
+import { TextDocument } from 'vscode';
 import { CodeLensResultCache } from './CodeLensResultChache';
-import { ReferencesCodeLens } from '../CodeLensProvider';
+import { ReferencesCodeLens } from '../../ReferenceCodeLensBuilder';
 
 
 type CacheInformation = { version: number; codeLens: ReferencesCodeLens[]; lastUpdated: Date };

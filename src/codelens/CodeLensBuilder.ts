@@ -1,6 +1,8 @@
 import * as vscode from "vscode";
-import { ReferencesCodeLens } from "./provider/CodeLensProvider";
+import { ReferencesCodeLens } from "./ReferenceCodeLensBuilder";
+
+export type executeDocumentSymbolProviderResponse = vscode.SymbolInformation & vscode.DocumentSymbol;
 
 export interface CodeLensBuilder {
-    build(codeLens: ReferencesCodeLens, token: vscode.CancellationToken): Promise<ReferencesCodeLens | null>
+    build(document: vscode.TextDocument, symbol: executeDocumentSymbolProviderResponse | vscode.DocumentSymbol): ReferencesCodeLens | null
 }

@@ -1,28 +1,18 @@
 import * as vscode from 'vscode';
+import { ReferencesCodeLens } from '../ReferenceCodeLensBuilder';
 import { CodeLensResultCache } from './cache/CodeLensResultChache';
-import { CodeLensBuilder } from '../CodeLensBuilder';
-
-type executeDocumentSymbolProviderResponse = vscode.SymbolInformation & vscode.DocumentSymbol;
-
-export class ReferencesCodeLens extends vscode.CodeLens {
-    constructor(
-        public uri: vscode.Uri,
-        range: vscode.Range,
-        public symbolKind: number,
-    ) {
-        super(range);
-    }
-}
-
-
+import { AsyncCommandQueue } from './AsyncCommandQueue';
+import { CodeLensBuilder, executeDocumentSymbolProviderResponse } from '../CodeLensBuilder';
 
 export class CodeLensProvider implements vscode.CodeLensProvider<ReferencesCodeLens> {
     private codeLensCache: CodeLensResultCache;
-    public codeLensBuilder: CodeLensBuilder;
+    private codeLensBuilder: CodeLensBuilder;
+    private queue: AsyncCommandQueue;
 
     constructor(codeLensCache: CodeLensResultCache, codeLensBuilder: CodeLensBuilder) {
         this.codeLensCache = codeLensCache;
         this.codeLensBuilder = codeLensBuilder;
+        this.queue = new AsyncCommandQueue();
     }
     public async provideCodeLenses(document: vscode.TextDocument, _token: vscode.CancellationToken): Promise<ReferencesCodeLens[]> {
 
@@ -46,7 +36,10 @@ export class CodeLensProvider implements vscode.CodeLensProvider<ReferencesCodeL
         }
 
         for (const symbol of allSymbols) {
-            codeLenses.push(new ReferencesCodeLens(document.uri, symbol.selectionRange, symbol.kind));
+            const newLens = this.codeLensBuilder.build(document, symbol);
+            if (newLens) {
+                codeLenses.push(newLens);
+            }
         }
         if (codeLenses.length === 0) {
             return [];
@@ -57,10 +50,55 @@ export class CodeLensProvider implements vscode.CodeLensProvider<ReferencesCodeL
     }
 
     public async resolveCodeLens(codeLens: ReferencesCodeLens, token: vscode.CancellationToken): Promise<ReferencesCodeLens | null> {
-        if (vscode.workspace.getConfiguration("cpp-codelens").get("enableCodeLens", true)) {
-            return this.codeLensBuilder.build(codeLens, token);
-        }
+        return new Promise((resolve) => {
 
+            this.queue.enqueue(async () => {
+
+                const symbolType = vscode.SymbolKind[codeLens.symbolKind].toLocaleLowerCase();
+                const position = codeLens.range.start;
+
+                let refs: vscode.Location[] = await vscode.commands.executeCommand<vscode.Location[]>(
+                    "vscode.executeReferenceProvider",
+                    codeLens.uri,
+                    position);
+
+                // filter out self-references in CodeLens reference count
+                refs = refs.filter((item) => {
+                    return !(item.range.start.character === position.character && item.range.start.line === position.line);
+                });
+
+
+                let renderData = {
+                    count: refs.length
+                };
+
+                if (refs.length === 0) {
+                    codeLens.command = {
+                        title: codeLens.emptyRenderers.render(renderData),
+                        command: "",
+                    };
+
+                    resolve(codeLens);
+                }
+                if (refs.length === 1) {
+                    codeLens.command = {
+                        title: codeLens.singularRenderer.render(renderData),
+                        command: "editor.action.goToLocations",
+                        arguments: [codeLens.uri, codeLens.range.start, refs]
+                    };
+                    resolve(codeLens);
+                }
+                else {
+                    codeLens.command = {
+                        title: codeLens.pluralRenderer.render(renderData),
+                        command: "editor.action.peekLocations",
+                        arguments: [codeLens.uri, codeLens.range.start, refs]
+                    };
+                    resolve(codeLens);
+                }
+            });
+
+        });
         return null;
     }
 

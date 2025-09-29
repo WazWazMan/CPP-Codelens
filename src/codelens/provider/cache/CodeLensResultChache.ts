@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { ReferencesCodeLens } from '../CodeLensProvider';
+import { ReferencesCodeLens } from '../../ReferenceCodeLensBuilder';
 
 export interface CodeLensResultCache {
   get(document: vscode.TextDocument): ReferencesCodeLens[] | undefined;
