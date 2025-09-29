@@ -68,12 +68,13 @@ export class CodeLensProvider implements vscode.CodeLensProvider<ReferencesCodeL
                         codeLens.uri,
                         position);
 
+                    // filter out self-references in CodeLens reference count
                     refs = refs.filter((item) => {
                         return !(item.range.start.character === position.character && item.range.start.line === position.line);
                     });
 
                     codeLens.command = {
-                        title: `${refs.length} references, ${document.getText(codeLens.range)}`,
+                        title: `${refs.length} references`,
                         tooltip: "Tooltip provided by sample extension",
                         command: "editor.action.peekLocations",
                         arguments: [codeLens.uri, codeLens.range.start, refs]
