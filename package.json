@@ -9,10 +9,17 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onLanguage:cpp"
+  ],
   "main": "./out/extension.js",
-  "contributes": {
-    "commands": []
+  "configuration": {
+    "properties": {
+      "cpp-codelens.enableCodeLens": {
+        "type": "boolean",
+        "default": true
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
