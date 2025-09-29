@@ -1,9 +1,11 @@
 import * as vscode from 'vscode';
 import { AsyncCommandQueue } from './AsyncCommandQueue';
+import { CodeLensResultCache } from './cache/CodeLensResultChache';
+import { VersionAndTimestampCodeLensCache } from './cache/VersionAndTimestampCodeLensCache';
 
 type executeDocumentSymbolProviderResponse = vscode.SymbolInformation & vscode.DocumentSymbol;
 
-class ReferencesCodeLens extends vscode.CodeLens {
+export class ReferencesCodeLens extends vscode.CodeLens {
     constructor(
         public uri: vscode.Uri,
         range: vscode.Range
@@ -16,13 +18,20 @@ class ReferencesCodeLens extends vscode.CodeLens {
 
 export class CodeLensProvider implements vscode.CodeLensProvider<ReferencesCodeLens> {
     private queue: AsyncCommandQueue;
+    private codeLensCache: CodeLensResultCache;
 
     constructor() {
         this.queue = new AsyncCommandQueue();
+        this.codeLensCache = new VersionAndTimestampCodeLensCache();
     }
     public async provideCodeLenses(document: vscode.TextDocument, _token: vscode.CancellationToken): Promise<ReferencesCodeLens[]> {
 
-        const codeLenses: ReferencesCodeLens[] = [];
+        let codeLenses = this.codeLensCache.get(document);
+        if (codeLenses !== undefined) {
+            return codeLenses;
+        }
+
+        codeLenses = [];
 
         const topSymbols = await vscode.commands.executeCommand<executeDocumentSymbolProviderResponse[]>(
             'vscode.executeDocumentSymbolProvider',
@@ -39,8 +48,11 @@ export class CodeLensProvider implements vscode.CodeLensProvider<ReferencesCodeL
         for (const symbol of allSymbols) {
             codeLenses.push(new ReferencesCodeLens(document.uri, symbol.selectionRange));
         }
+        if(codeLenses.length === 0) {
+            return [];
+        }
 
-
+        this.codeLensCache.set(document,codeLenses);
         return codeLenses;
     }
 
