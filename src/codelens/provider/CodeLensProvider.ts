@@ -48,11 +48,11 @@ export class CodeLensProvider implements vscode.CodeLensProvider<ReferencesCodeL
         for (const symbol of allSymbols) {
             codeLenses.push(new ReferencesCodeLens(document.uri, symbol.selectionRange));
         }
-        if(codeLenses.length === 0) {
+        if (codeLenses.length === 0) {
             return [];
         }
 
-        this.codeLensCache.set(document,codeLenses);
+        this.codeLensCache.set(document, codeLenses);
         return codeLenses;
     }
 
@@ -63,11 +63,14 @@ export class CodeLensProvider implements vscode.CodeLensProvider<ReferencesCodeL
                     const document = await vscode.workspace.openTextDocument(codeLens.uri);
                     const position = codeLens.range.start;
 
-                    // TODO: remove calle reference
-                    const refs: vscode.Location[] = await vscode.commands.executeCommand<vscode.Location[]>(
+                    let refs: vscode.Location[] = await vscode.commands.executeCommand<vscode.Location[]>(
                         "vscode.executeReferenceProvider",
                         codeLens.uri,
                         position);
+
+                    refs = refs.filter((item) => {
+                        return !(item.range.start.character === position.character && item.range.start.line === position.line);
+                    });
 
                     codeLens.command = {
                         title: `${refs.length} references, ${document.getText(codeLens.range)}`,
