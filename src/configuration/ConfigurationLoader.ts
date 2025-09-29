@@ -20,6 +20,8 @@ export const symbolTypes = [
     "operator"
 ];
 
+export type SymbolType = typeof symbolTypes[number];
+
 export interface Configuration {
     enableCodeLens: boolean;
     emptyTemplate: string;
