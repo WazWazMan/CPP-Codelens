@@ -22,7 +22,9 @@ export const symbolTypes = [
 
 export interface Configuration {
     enableCodeLens: boolean;
-    referencesTemplate: string;
+    emptyTemplate: string;
+    singularTemplate: string;
+    pluralTemplate: string;
     references: {
         [key in typeof symbolTypes[number]]: {
             enableCodeLens: boolean;
@@ -54,25 +56,26 @@ export class ConfigurationLoader {
     }
 
     private loadConfiguration() {
+        const defaultString = "{{ count }} references";
         const config = vscode.workspace.getConfiguration("cpp-codelens");
         this.configuration = {
             enableCodeLens: config.get("codelens.enableCodeLens", true),
-            referencesTemplate: config.get("codelens.references.template", "{{ count }} references"),
-            references: {
-            }
+            emptyTemplate: config.get(`codelens.references.emptyTemplate`, ""),
+            singularTemplate: config.get(`codelens.references.singularTemplate`, defaultString),
+            pluralTemplate: config.get(`codelens.references.pluralTemplate`, defaultString),
+            references: {}
         };
-        const defaultString = "{{ count }} references";
         for (let index = 0; index < symbolTypes.length; index++) {
             const symbol = symbolTypes[index];
             const path = `codelens.references.${symbol}`;
             this.configuration.references[symbol] = {
                 enableCodeLens: config.get(`${path}.enableCodeLens`, true),
-                emptyTemplate: config.get(`${path}.emptyTemplate`, defaultString),
+                emptyTemplate: config.get(`${path}.emptyTemplate`, ""),
                 singularTemplate: config.get(`${path}.singularTemplate`, defaultString),
                 pluralTemplate: config.get(`${path}.pluralTemplate`, defaultString),
-                isEmptyTemplateDefault: this.configuration.references[symbol].emptyTemplate === defaultString,
-                isSingularTemplate: this.configuration.references[symbol].singularTemplate === defaultString,
-                isPluralTemplate: this.configuration.references[symbol].pluralTemplate === "",
+                isEmptyTemplateDefault: config.get(`${path}.emptyTemplate`, "") == "",
+                isSingularTemplate: config.get(`${path}.singularTemplate`, defaultString) == defaultString,
+                isPluralTemplate: config.get(`${path}.pluralTemplate`, defaultString) == defaultString,
             };
         }
     }

@@ -23,10 +23,20 @@
           "default": true,
           "description": "Enable/disable this extension"
         },
-        "cpp-codelens.codelens.references.template": {
+        "cpp-codelens.codelens.references.emptyTemplate": {
+          "type": "string",
+          "default": "",
+          "description": "Text displayed above an symbol when no references are found. Leave empty to disable the annotation."
+        },
+        "cpp-codelens.codelens.references.singularTemplate": {
           "type": "string",
           "default": "{{ count }} references",
-          "description": "Template text displayed above a symbol"
+          "description": "Template text displayed above an symbol with exactly one reference."
+        },
+        "cpp-codelens.codelens.references.pluralTemplate": {
+          "type": "string",
+          "default": "{{ count }} references",
+          "description": "Template text displayed above an symbol with multiple references."
         },
         "cpp-codelens.codelens.references.file.enableCodeLens": {
           "type": "boolean",
