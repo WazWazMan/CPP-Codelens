@@ -1,4 +1,4 @@
-import { Renderable } from "./renderer/Renderable";
+import { Renderable } from "./Renderable";
 
 export class TemplateRenderer implements Renderable {
     private readonly parts: ReadonlyArray<string>;
