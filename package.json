@@ -41,7 +41,7 @@
         "cpp-codelens.codelens.references.file.enableCodeLens": {
           "type": "boolean",
           "default": true,
-          "description": "Enable/disable this extension for namespace symbol"
+          "description": "Enable or disable CodeLens for namespace symbol"
         },
         "cpp-codelens.codelens.references.file.emptyTemplate": {
           "type": "string",
@@ -61,7 +61,7 @@
         "cpp-codelens.codelens.references.module.enableCodeLens": {
           "type": "boolean",
           "default": true,
-          "description": "Enable/disable this extension for namespace symbol"
+          "description": "Enable or disable CodeLens for namespace symbol"
         },
         "cpp-codelens.codelens.references.module.emptyTemplate": {
           "type": "string",
@@ -81,7 +81,7 @@
         "cpp-codelens.codelens.references.namespace.enableCodeLens": {
           "type": "boolean",
           "default": true,
-          "description": "Enable/disable this extension for namespace symbol"
+          "description": "Enable or disable CodeLens for namespace symbol"
         },
         "cpp-codelens.codelens.references.namespace.emptyTemplate": {
           "type": "string",
@@ -101,7 +101,7 @@
         "cpp-codelens.codelens.references.package.enableCodeLens": {
           "type": "boolean",
           "default": true,
-          "description": "Enable/disable this extension for namespace symbol"
+          "description": "Enable or disable CodeLens for namespace symbol"
         },
         "cpp-codelens.codelens.references.package.emptyTemplate": {
           "type": "string",
@@ -121,7 +121,7 @@
         "cpp-codelens.codelens.references.class.enableCodeLens": {
           "type": "boolean",
           "default": true,
-          "description": "Enable/disable this extension for class symbol"
+          "description": "Enable or disable CodeLens for class symbol"
         },
         "cpp-codelens.codelens.references.class.emptyTemplate": {
           "type": "string",
@@ -141,7 +141,7 @@
         "cpp-codelens.codelens.references.method.enableCodeLens": {
           "type": "boolean",
           "default": true,
-          "description": "Enable/disable this extension for method symbol"
+          "description": "Enable or disable CodeLens for method symbol"
         },
         "cpp-codelens.codelens.references.method.emptyTemplate": {
           "type": "string",
@@ -161,7 +161,7 @@
         "cpp-codelens.codelens.references.property.enableCodeLens": {
           "type": "boolean",
           "default": true,
-          "description": "Enable/disable this extension for property symbol"
+          "description": "Enable or disable CodeLens for property symbol"
         },
         "cpp-codelens.codelens.references.property.emptyTemplate": {
           "type": "string",
@@ -181,7 +181,7 @@
         "cpp-codelens.codelens.references.field.enableCodeLens": {
           "type": "boolean",
           "default": true,
-          "description": "Enable/disable this extension for field symbol"
+          "description": "Enable or disable CodeLens for field symbol"
         },
         "cpp-codelens.codelens.references.field.emptyTemplate": {
           "type": "string",
@@ -201,7 +201,7 @@
         "cpp-codelens.codelens.references.constructor.enableCodeLens": {
           "type": "boolean",
           "default": true,
-          "description": "Enable/disable this extension for field symbol"
+          "description": "Enable or disable CodeLens for field symbol"
         },
         "cpp-codelens.codelens.references.constructor.emptyTemplate": {
           "type": "string",
@@ -221,7 +221,7 @@
         "cpp-codelens.codelens.references.enum.enableCodeLens": {
           "type": "boolean",
           "default": true,
-          "description": "Enable/disable this extension for enum symbol"
+          "description": "Enable or disable CodeLens for enum symbol"
         },
         "cpp-codelens.codelens.references.enum.emptyTemplate": {
           "type": "string",
@@ -261,7 +261,7 @@
         "cpp-codelens.codelens.references.function.enableCodeLens": {
           "type": "boolean",
           "default": true,
-          "description": "Enable/disable this extension for function symbol"
+          "description": "Enable or disable CodeLens for function symbol"
         },
         "cpp-codelens.codelens.references.function.emptyTemplate": {
           "type": "string",
@@ -281,7 +281,7 @@
         "cpp-codelens.codelens.references.variable.enableCodeLens": {
           "type": "boolean",
           "default": true,
-          "description": "Enable/disable this extension for variable symbol"
+          "description": "Enable or disable CodeLens for variable symbol"
         },
         "cpp-codelens.codelens.references.functvariableon.emptyTemplate": {
           "type": "string",
@@ -301,7 +301,7 @@
         "cpp-codelens.codelens.references.constant.enableCodeLens": {
           "type": "boolean",
           "default": true,
-          "description": "Enable/disable this extension for constant symbol"
+          "description": "Enable or disable CodeLens for constant symbol"
         },
         "cpp-codelens.codelens.references.constant.emptyTemplate": {
           "type": "string",
@@ -321,7 +321,7 @@
         "cpp-codelens.codelens.references.enumMember.enableCodeLens": {
           "type": "boolean",
           "default": true,
-          "description": "Enable/disable this extension for enumMember symbol"
+          "description": "Enable or disable CodeLens for enumMember symbol"
         },
         "cpp-codelens.codelens.references.enumMember.emptyTemplate": {
           "type": "string",
@@ -341,7 +341,7 @@
         "cpp-codelens.codelens.references.struct.enableCodeLens": {
           "type": "boolean",
           "default": true,
-          "description": "Enable/disable this extension for struct symbol"
+          "description": "Enable or disable CodeLens for struct symbol"
         },
         "cpp-codelens.codelens.references.struct.emptyTemplate": {
           "type": "string",
@@ -361,7 +361,7 @@
         "cpp-codelens.codelens.references.operator.enableCodeLens": {
           "type": "boolean",
           "default": true,
-          "description": "Enable/disable this extension for operator symbol"
+          "description": "Enable or disable CodeLens for operator symbol"
         },
         "cpp-codelens.codelens.references.operator.emptyTemplate": {
           "type": "string",
