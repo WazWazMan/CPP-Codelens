@@ -17,7 +17,13 @@
     "properties": {
       "cpp-codelens.enableCodeLens": {
         "type": "boolean",
-        "default": true
+        "default": true,
+        "description": "Enable/disable this extension"
+      },
+      "cpp-codelens.enableCodeLens.references.template": {
+        "type": "string",
+        "default": "{{ count }} references",
+        "description": "Template text displayed above a symbol"
       }
     }
   },

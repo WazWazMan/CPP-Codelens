@@ -2,6 +2,8 @@ import * as vscode from 'vscode';
 import { AsyncCommandQueue } from './AsyncCommandQueue';
 import { CodeLensResultCache } from './cache/CodeLensResultChache';
 import { VersionAndTimestampCodeLensCache } from './cache/VersionAndTimestampCodeLensCache';
+import { Renderable } from '../../renderer/Renderable';
+import { TemplateRenderer } from '../../TemplateRenderer';
 
 type executeDocumentSymbolProviderResponse = vscode.SymbolInformation & vscode.DocumentSymbol;
 
@@ -19,10 +21,12 @@ export class ReferencesCodeLens extends vscode.CodeLens {
 export class CodeLensProvider implements vscode.CodeLensProvider<ReferencesCodeLens> {
     private queue: AsyncCommandQueue;
     private codeLensCache: CodeLensResultCache;
+    private renderer: Renderable;
 
     constructor() {
         this.queue = new AsyncCommandQueue();
         this.codeLensCache = new VersionAndTimestampCodeLensCache();
+        this.renderer = new TemplateRenderer(vscode.workspace.getConfiguration("cpp-codelens").get<string>("enableCodeLens.references.template", "{{ count }} references"));
     }
     public async provideCodeLenses(document: vscode.TextDocument, _token: vscode.CancellationToken): Promise<ReferencesCodeLens[]> {
 
@@ -73,12 +77,22 @@ export class CodeLensProvider implements vscode.CodeLensProvider<ReferencesCodeL
                         return !(item.range.start.character === position.character && item.range.start.line === position.line);
                     });
 
-                    codeLens.command = {
-                        title: `${refs.length} references`,
-                        tooltip: "Tooltip provided by sample extension",
-                        command: "editor.action.peekLocations",
-                        arguments: [codeLens.uri, codeLens.range.start, refs]
-                    };
+                    if (refs.length === 1) {
+                        codeLens.command = {
+                            title: this.renderer.render({ count: refs.length }),
+                            tooltip: "Tooltip provided by sample extension",
+                            command: "editor.action.goToLocations",
+                            arguments: [codeLens.uri, codeLens.range.start, refs]
+                        };
+                    }
+                    else {
+                        codeLens.command = {
+                            title: this.renderer.render({ count: refs.length }),
+                            tooltip: "Tooltip provided by sample extension",
+                            command: "editor.action.peekLocations",
+                            arguments: [codeLens.uri, codeLens.range.start, refs]
+                        };
+                    }
                     resolve(codeLens);
 
                 });
