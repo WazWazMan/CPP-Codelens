@@ -2,7 +2,7 @@
   "name": "cpp-codelens",
   "displayName": "CPP Codelens",
   "description": "A VSCode extension that adds CodeLens to C++ files.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "publisher": "WazWazMan",
   "author": {
     "email": "wazwazman1@gmail.com",

@@ -38,4 +38,6 @@ The CPP Codelens extension enhances your coding experience by providing inline r
 
 ## Release Notes
 
+### 1.0.0
 
+Initial release
