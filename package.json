@@ -1,8 +1,15 @@
 {
   "name": "cpp-codelens",
-  "displayName": "Cpp codelens",
+  "displayName": "CPP Codelens",
   "description": "A VSCode extension that adds CodeLens to C++ files.",
   "version": "0.0.1",
+  "publisher": "WazWazMan",
+  "author": {
+    "email": "wazwazman1@gmail.com",
+    "name": "Daniel bogachevsky"
+  },
+  "private": true,
+  "icon": "images/logo.png",
   "engines": {
     "vscode": "^1.104.0"
   },
@@ -12,6 +19,10 @@
   "activationEvents": [
     "onLanguage:cpp"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WazWazMan/cpp-codelens"
+  },
   "main": "./out/extension.js",
   "contributes": {
     "configuration": [
