@@ -69,7 +69,8 @@ export class CodeLensProvider implements vscode.CodeLensProvider<ReferencesCodeL
 
 
                 let renderData = {
-                    count: refs.length
+                    count: refs.length,
+                    kind: codeLens.symbolKind
                 };
 
                 if (refs.length === 0) {
@@ -108,7 +109,7 @@ export class CodeLensProvider implements vscode.CodeLensProvider<ReferencesCodeL
         for (const symbol of symbols) {
             allSymbols.push(symbol);
             if (symbol.children) {
-                allSymbols.concat(this.getChildSymbols(symbol.children));
+                allSymbols.push(...this.getChildSymbols(symbol.children));
             }
         }
 
