@@ -6,7 +6,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     const configurationLoader = new ConfigurationLoader();
     const codelensProvider = CodeLensProviderBuilder.getCodeLens();
-    let codeLensProviderDisposable = vscode.languages.registerCodeLensProvider("*", codelensProvider);
+    let codeLensProviderDisposable = vscode.languages.registerCodeLensProvider({scheme:"file",language:"cpp"}, codelensProvider);
 
     const configChangeListener = vscode.workspace.onDidChangeConfiguration((event: vscode.ConfigurationChangeEvent) => {
         if (!event.affectsConfiguration('cpp-codelens')) {
