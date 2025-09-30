@@ -1,31 +1,17 @@
 import * as vscode from "vscode";
 
 export const symbolTypes = [
-    "file",
-    "module",
     "namespace",
-    "package",
     "class",
     "method",
-    "property",
     "field",
     "constructor",
     "enum",
-    "interface",
     "function",
     "variable",
     "constant",
-    "string",
-    "number",
-    "boolean",
-    "array",
-    "object",
-    "key",
-    "null",
     "enumMember",
     "struct",
-    "operator",
-    "typeParameter"
 ];
 
 export type SymbolType = typeof symbolTypes[number];
