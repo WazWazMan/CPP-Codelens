@@ -13,7 +13,7 @@
     "onLanguage:cpp"
   ],
   "main": "./out/extension.js",
-  "contributes":{
+  "contributes": {
     "configuration": {
       "title": "Cpp Codelens",
       "type": "object",
@@ -41,7 +41,7 @@
         "cpp-codelens.codelens.references.file.enableCodeLens": {
           "type": "boolean",
           "default": true,
-          "description": "Enable or disable CodeLens for namespace symbol"
+          "description": "Enable or disable CodeLens for file symbol"
         },
         "cpp-codelens.codelens.references.file.emptyTemplate": {
           "type": "string",
@@ -61,7 +61,7 @@
         "cpp-codelens.codelens.references.module.enableCodeLens": {
           "type": "boolean",
           "default": true,
-          "description": "Enable or disable CodeLens for namespace symbol"
+          "description": "Enable or disable CodeLens for module symbol"
         },
         "cpp-codelens.codelens.references.module.emptyTemplate": {
           "type": "string",
@@ -318,6 +318,146 @@
           "default": "{{ count }} references",
           "description": "Template text displayed above an constant with multiple references."
         },
+        "cpp-codelens.codelens.references.string.enableCodeLens": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable CodeLens for string symbol"
+        },
+        "cpp-codelens.codelens.references.string.emptyTemplate": {
+          "type": "string",
+          "default": "",
+          "description": "Text displayed above an string when no references are found. Leave empty to disable the annotation."
+        },
+        "cpp-codelens.codelens.references.string.singularTemplate": {
+          "type": "string",
+          "default": "{{ count }} references",
+          "description": "Template text displayed above an string with exactly one reference."
+        },
+        "cpp-codelens.codelens.references.string.pluralTemplate": {
+          "type": "string",
+          "default": "{{ count }} references",
+          "description": "Template text displayed above an string with multiple references."
+        },
+        "cpp-codelens.codelens.references.number.enableCodeLens": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable CodeLens for number symbol"
+        },
+        "cpp-codelens.codelens.references.number.emptyTemplate": {
+          "type": "string",
+          "default": "",
+          "description": "Text displayed above an number when no references are found. Leave empty to disable the annotation."
+        },
+        "cpp-codelens.codelens.references.number.singularTemplate": {
+          "type": "string",
+          "default": "{{ count }} references",
+          "description": "Template text displayed above an number with exactly one reference."
+        },
+        "cpp-codelens.codelens.references.number.pluralTemplate": {
+          "type": "string",
+          "default": "{{ count }} references",
+          "description": "Template text displayed above an number with multiple references."
+        },
+        "cpp-codelens.codelens.references.boolean.enableCodeLens": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable CodeLens for boolean symbol"
+        },
+        "cpp-codelens.codelens.references.boolean.emptyTemplate": {
+          "type": "string",
+          "default": "",
+          "description": "Text displayed above an boolean when no references are found. Leave empty to disable the annotation."
+        },
+        "cpp-codelens.codelens.references.boolean.singularTemplate": {
+          "type": "string",
+          "default": "{{ count }} references",
+          "description": "Template text displayed above an boolean with exactly one reference."
+        },
+        "cpp-codelens.codelens.references.boolean.pluralTemplate": {
+          "type": "string",
+          "default": "{{ count }} references",
+          "description": "Template text displayed above an boolean with multiple references."
+        },
+        "cpp-codelens.codelens.references.array.enableCodeLens": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable CodeLens for array symbol"
+        },
+        "cpp-codelens.codelens.references.array.emptyTemplate": {
+          "type": "string",
+          "default": "",
+          "description": "Text displayed above an array when no references are found. Leave empty to disable the annotation."
+        },
+        "cpp-codelens.codelens.references.array.singularTemplate": {
+          "type": "string",
+          "default": "{{ count }} references",
+          "description": "Template text displayed above an array with exactly one reference."
+        },
+        "cpp-codelens.codelens.references.array.pluralTemplate": {
+          "type": "string",
+          "default": "{{ count }} references",
+          "description": "Template text displayed above an array with multiple references."
+        },
+        "cpp-codelens.codelens.references.object.enableCodeLens": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable CodeLens for object symbol"
+        },
+        "cpp-codelens.codelens.references.object.emptyTemplate": {
+          "type": "string",
+          "default": "",
+          "description": "Text displayed above an object when no references are found. Leave empty to disable the annotation."
+        },
+        "cpp-codelens.codelens.references.object.singularTemplate": {
+          "type": "string",
+          "default": "{{ count }} references",
+          "description": "Template text displayed above an object with exactly one reference."
+        },
+        "cpp-codelens.codelens.references.object.pluralTemplate": {
+          "type": "string",
+          "default": "{{ count }} references",
+          "description": "Template text displayed above an object with multiple references."
+        },
+        "cpp-codelens.codelens.references.key.enableCodeLens": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable CodeLens for key symbol"
+        },
+        "cpp-codelens.codelens.references.key.emptyTemplate": {
+          "type": "string",
+          "default": "",
+          "description": "Text displayed above an key when no references are found. Leave empty to disable the annotation."
+        },
+        "cpp-codelens.codelens.references.key.singularTemplate": {
+          "type": "string",
+          "default": "{{ count }} references",
+          "description": "Template text displayed above an key with exactly one reference."
+        },
+        "cpp-codelens.codelens.references.key.pluralTemplate": {
+          "type": "string",
+          "default": "{{ count }} references",
+          "description": "Template text displayed above an key with multiple references."
+        },
+        "cpp-codelens.codelens.references.null.enableCodeLens": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable CodeLens for null symbol"
+        },
+        "cpp-codelens.codelens.references.null.emptyTemplate": {
+          "type": "string",
+          "default": "",
+          "description": "Text displayed above an null when no references are found. Leave empty to disable the annotation."
+        },
+        "cpp-codelens.codelens.references.null.singularTemplate": {
+          "type": "string",
+          "default": "{{ count }} references",
+          "description": "Template text displayed above an null with exactly one reference."
+        },
+        "cpp-codelens.codelens.references.null.pluralTemplate": {
+          "type": "string",
+          "default": "{{ count }} references",
+          "description": "Template text displayed above an null with multiple references."
+        },
         "cpp-codelens.codelens.references.enumMember.enableCodeLens": {
           "type": "boolean",
           "default": true,
@@ -358,6 +498,26 @@
           "default": "{{ count }} references",
           "description": "Template text displayed above an struct with multiple references."
         },
+        "cpp-codelens.codelens.references.event.enableCodeLens": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable CodeLens for event symbol"
+        },
+        "cpp-codelens.codelens.references.event.emptyTemplate": {
+          "type": "string",
+          "default": "",
+          "description": "Text displayed above an event when no references are found. Leave empty to disable the annotation."
+        },
+        "cpp-codelens.codelens.references.event.singularTemplate": {
+          "type": "string",
+          "default": "{{ count }} references",
+          "description": "Template text displayed above an event with exactly one reference."
+        },
+        "cpp-codelens.codelens.references.event.pluralTemplate": {
+          "type": "string",
+          "default": "{{ count }} references",
+          "description": "Template text displayed above an event with multiple references."
+        },
         "cpp-codelens.codelens.references.operator.enableCodeLens": {
           "type": "boolean",
           "default": true,
@@ -377,6 +537,26 @@
           "type": "string",
           "default": "{{ count }} references",
           "description": "Template text displayed above an operator with multiple references."
+        },
+        "cpp-codelens.codelens.references.typeParameter.enableCodeLens": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable CodeLens for typeParameter symbol"
+        },
+        "cpp-codelens.codelens.references.typeParameter.emptyTemplate": {
+          "type": "string",
+          "default": "",
+          "description": "Text displayed above an typeParameter when no references are found. Leave empty to disable the annotation."
+        },
+        "cpp-codelens.codelens.references.typeParameter.singularTemplate": {
+          "type": "string",
+          "default": "{{ count }} references",
+          "description": "Template text displayed above an typeParameter with exactly one reference."
+        },
+        "cpp-codelens.codelens.references.typeParameter.pluralTemplate": {
+          "type": "string",
+          "default": "{{ count }} references",
+          "description": "Template text displayed above an typeParameter with multiple references."
         }
       }
     }

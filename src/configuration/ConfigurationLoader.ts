@@ -15,9 +15,17 @@ export const symbolTypes = [
     "function",
     "variable",
     "constant",
+    "string",
+    "number",
+    "boolean",
+    "array",
+    "object",
+    "key",
+    "null",
     "enumMember",
     "struct",
-    "operator"
+    "operator",
+    "typeParameter"
 ];
 
 export type SymbolType = typeof symbolTypes[number];
